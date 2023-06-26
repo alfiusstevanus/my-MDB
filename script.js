@@ -65,14 +65,26 @@
 
 // refactoring
 const searchBtn = document.querySelector('.search-btn')
+const keyword = document.querySelector('.keyword')
+
 searchBtn.addEventListener('click',  async function(){
     try {
-        const keyword = document.querySelector('.keyword')
         const movies = await getMovies(keyword.value)
         updateUI(movies)        
     } catch (error) {
         alert(error)
     }
+})
+
+keyword.addEventListener('keyup',  async function(e){
+    if(e.keyCode === 13){
+        try {
+            const movies = await getMovies(keyword.value)
+            updateUI(movies)        
+        } catch (error) {
+            alert(error)
+        }
+    }  
 })
 
 
